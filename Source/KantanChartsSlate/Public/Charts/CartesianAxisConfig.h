@@ -32,12 +32,16 @@ struct FCartesianAxisInstanceConfig
 	bool bShowMarkers;
 
 	UPROPERTY(EditAnywhere, Category = "Axis")
+	bool bMarkersFill;
+
+	UPROPERTY(EditAnywhere, Category = "Axis")
 	bool bShowLabels;
 
 	FCartesianAxisInstanceConfig() :
 		bEnabled(false)
 		, bShowTitle(false)
 		, bShowMarkers(true)
+		, bMarkersFill(false)
 		, bShowLabels(true)
 	{}
 };

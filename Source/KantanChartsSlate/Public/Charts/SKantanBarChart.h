@@ -142,11 +142,12 @@ protected:
 private:
 	enum BarChartLayers {
 		MaxValueLine = 0,
-		BarInterior = 1,
-		BarOutline = 2,
-		CategoryAxis = 3,
-		ZeroLine = 3,
-		ValueAxis = 3,
+		MarkerFill = 1,
+		BarInterior = 2,
+		BarOutline = 3,
+		CategoryAxis = 4,
+		ZeroLine = 4,
+		ValueAxis = 4,
 	};
 
 	/** The style */

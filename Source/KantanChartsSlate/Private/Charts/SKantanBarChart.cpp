@@ -549,6 +549,20 @@ int32 SKantanBarChart::DrawChartArea(
 				ChartConstants::AxisMarkerLength,
 				ChartConstants::AxisMarkerLabelGap
 				);
+
+			if (ValueAxisCfg.LeftBottomAxis.bMarkersFill)
+			{
+				DrawMarkersFill(
+					Geometry,
+					PlotSpaceGeometry,
+					OutDrawElements,
+					LayerId + BarChartLayers::MarkerFill,
+					EAxis::Y,
+					DetermineValueAxisTransform(PlotSpaceGeometry.GetLocalSize()),
+					EChartAxisPosition::LeftBottom,
+					DetermineValueAxisMarkerData(PlotSpaceGeometry)
+				);
+			}
 		}
 		else if (Orientation == EKantanBarChartOrientation::Horizontal && LabelPosition == EKantanBarLabelPosition::Standard)
 		{
@@ -583,6 +597,20 @@ int32 SKantanBarChart::DrawChartArea(
 				ChartConstants::AxisMarkerLength,
 				ChartConstants::AxisMarkerLabelGap
 				);
+
+			if (ValueAxisCfg.RightTopAxis.bMarkersFill)
+			{
+				DrawMarkersFill(
+					Geometry,
+					PlotSpaceGeometry,
+					OutDrawElements,
+					LayerId + BarChartLayers::MarkerFill,
+					EAxis::Y,
+					DetermineValueAxisTransform(PlotSpaceGeometry.GetLocalSize()),
+					EChartAxisPosition::RightTop,
+					DetermineValueAxisMarkerData(PlotSpaceGeometry)
+				);
+			}
 		}
 		break;
 
@@ -603,6 +631,20 @@ int32 SKantanBarChart::DrawChartArea(
 				ChartConstants::AxisMarkerLength,
 				ChartConstants::AxisMarkerLabelGap
 				);
+
+			if (ValueAxisCfg.LeftBottomAxis.bMarkersFill)
+			{
+				DrawMarkersFill(
+					Geometry,
+					PlotSpaceGeometry,
+					OutDrawElements,
+					LayerId + BarChartLayers::MarkerFill,
+					EAxis::X,
+					DetermineValueAxisTransform(PlotSpaceGeometry.GetLocalSize()),
+					EChartAxisPosition::LeftBottom,
+					DetermineValueAxisMarkerData(PlotSpaceGeometry)
+				);
+			}
 		}
 		else if (Orientation == EKantanBarChartOrientation::Vertical && LabelPosition == EKantanBarLabelPosition::Standard)
 		{
@@ -637,6 +679,20 @@ int32 SKantanBarChart::DrawChartArea(
 				ChartConstants::AxisMarkerLength,
 				ChartConstants::AxisMarkerLabelGap
 				);
+
+			if (ValueAxisCfg.RightTopAxis.bMarkersFill)
+			{
+				DrawMarkersFill(
+					Geometry,
+					PlotSpaceGeometry,
+					OutDrawElements,
+					LayerId + BarChartLayers::MarkerFill,
+					EAxis::X,
+					DetermineValueAxisTransform(PlotSpaceGeometry.GetLocalSize()),
+					EChartAxisPosition::RightTop,
+					DetermineValueAxisMarkerData(PlotSpaceGeometry)
+				);
+			}
 		}
 		break;
 

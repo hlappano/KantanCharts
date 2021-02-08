@@ -22,6 +22,7 @@ void FCartesianAxisInstanceConfigCustomization::CustomizeHeader(TSharedRef<IProp
 	static const FName EnabledPropertyName = GET_MEMBER_NAME_CHECKED(FCartesianAxisInstanceConfig, bEnabled);
 	static const FName TitlePropertyName = GET_MEMBER_NAME_CHECKED(FCartesianAxisInstanceConfig, bShowTitle);
 	static const FName MarkersPropertyName = GET_MEMBER_NAME_CHECKED(FCartesianAxisInstanceConfig, bShowMarkers);
+	static const FName MarkersFillPropertyName = GET_MEMBER_NAME_CHECKED(FCartesianAxisInstanceConfig, bMarkersFill);
 	static const FName LabelsPropertyName = GET_MEMBER_NAME_CHECKED(FCartesianAxisInstanceConfig, bShowLabels);
 
 	const bool bDisplayResetToDefault = false;
@@ -31,6 +32,7 @@ void FCartesianAxisInstanceConfigCustomization::CustomizeHeader(TSharedRef<IProp
 	auto EnabledProp = StructPropertyHandle->GetChildHandle(EnabledPropertyName);
 	auto TitleProp = StructPropertyHandle->GetChildHandle(TitlePropertyName);
 	auto MarkersProp = StructPropertyHandle->GetChildHandle(MarkersPropertyName);
+	auto MarkersFillProp = StructPropertyHandle->GetChildHandle(MarkersFillPropertyName);
 	auto LabelsProp = StructPropertyHandle->GetChildHandle(LabelsPropertyName);
 
 	TSharedPtr< SVerticalBox > HeaderBox;
@@ -81,6 +83,12 @@ void FCartesianAxisInstanceConfigCustomization::CustomizeHeader(TSharedRef<IProp
 			SNew(SProperty, MarkersProp)
 			.ShouldDisplayName(true)
 			.DisplayName(LOCTEXT("AxisInstMarkers", "Markers"))
+		];
+	PropertiesBox->AddSlot()
+		[
+			SNew(SProperty, MarkersFillProp)
+			.ShouldDisplayName(true)
+			.DisplayName(LOCTEXT("AxisInstMarkersFill", "MarkersFill"))
 		];
 	PropertiesBox->AddSlot()
 		[

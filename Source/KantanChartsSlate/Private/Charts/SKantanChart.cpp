@@ -611,6 +611,64 @@ int32 SKantanChart::DrawFixedAxis(
 	return LayerId;
 }
 
+
+int32 SKantanChart::DrawMarkersFill(
+	const FGeometry& Geometry,
+	const FGeometry& PlotSpaceGeometry,
+	FSlateWindowElementList& OutDrawElements,
+	int32 LayerId,
+	EAxis::Type Axis,
+	AxisUtil::FAxisTransform const& ValueToChartAxisTransform,
+	EChartAxisPosition AxisPosition,
+	AxisUtil::FAxisMarkerData const& MarkerData
+) const
+{
+	const int32 AxisIdx = Axis == EAxis::X ? 0 : 1;
+	const int32 OtherAxisIdx = Axis == EAxis::X ? 1 : 0;
+
+	auto ChartStyle = GetChartStyle();	
+
+	// Flag denoting if perpendicular coordinate in geometry space is reversed (ie. going away from plot area is negative)
+	auto const bIsReversed =
+		(AxisPosition == EChartAxisPosition::RightTop && Axis == EAxis::X) ||
+		(AxisPosition == EChartAxisPosition::LeftBottom && Axis == EAxis::Y);
+	auto const FixedCompBase = bIsReversed ? Geometry.GetLocalSize()[OtherAxisIdx] : 0.0f;	
+
+	// Marker Fill
+	auto const bMarkerFillIsReversed =
+		(AxisPosition == EChartAxisPosition::LeftBottom && Axis == EAxis::X) ||
+		(AxisPosition == EChartAxisPosition::RightTop && Axis == EAxis::Y);
+	auto const MarkerFill = bMarkerFillIsReversed ? -(PlotSpaceGeometry.GetLocalSize()[OtherAxisIdx]) : PlotSpaceGeometry.GetLocalSize()[OtherAxisIdx];
+
+
+	// Axis markers and labels
+	for (auto const& AbsoluteRoundedMarker : MarkerData.MarkerValues)
+	{
+		auto AbsMarkerVal = AbsoluteRoundedMarker.GetFloatValue();
+		auto MarkerPlotSpace = ValueToChartAxisTransform.MapPoint(AbsMarkerVal);
+
+		//TODO: Fill plot from Marker Plot to offset of PlotSpaceGeometry
+		TArray< FVector2D > ExtendedPoints;
+		ExtendedPoints.Init(FVector2D::ZeroVector, 2);
+		ExtendedPoints[0][AxisIdx] = MarkerPlotSpace;
+		ExtendedPoints[0][OtherAxisIdx] = FixedCompBase;
+		ExtendedPoints[1][AxisIdx] = MarkerPlotSpace;
+		ExtendedPoints[1][OtherAxisIdx] = FixedCompBase + MarkerFill;
+
+		FSlateDrawElement::MakeLines(
+			OutDrawElements,
+			LayerId,
+			Geometry.ToPaintGeometry(),
+			ExtendedPoints,
+			ESlateDrawEffect::None,
+			ChartStyle->ChartLineColor,
+			false,
+			ChartStyle->ChartLineThickness
+		);
+	}
+
+	return LayerId;
+}
 int32 SKantanChart::DrawXAxisTitle(const FGeometry& Geometry, const FSlateRect& ClipRect, FSlateWindowElementList& OutDrawElements, int32 LayerId, FCartesianAxisConfig const& AxisCfg, AxisUtil::FAxisMarkerData const& MarkerData) const
 {
 	auto FontMeasureService = FSlateApplication::Get().GetRenderer()->GetFontMeasureService();

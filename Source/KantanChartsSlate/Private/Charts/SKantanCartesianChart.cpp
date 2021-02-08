@@ -575,6 +575,20 @@ int32 SKantanCartesianChart::DrawChartArea(
 				ChartConstants::AxisMarkerLength,
 				ChartConstants::AxisMarkerLabelGap
 				);
+
+			if (XAxisCfg.LeftBottomAxis.bMarkersFill)
+			{
+				DrawMarkersFill(
+					Geometry,
+					PlotSpaceGeometry,
+					OutDrawElements,
+					RetLayerId,
+					EAxis::X,
+					AxisUtil::FAxisTransform::FromTransform2D(CartesianToPlotTransform(PlotSpaceGeometry), 0 /* X axis */),
+					EChartAxisPosition::LeftBottom,
+					GetCachedMarkerData(EAxis::X, PlotSpaceGeometry)
+				);
+			}
 		}
 		break;
 	case EChartContentArea::XAxisTop:
@@ -594,6 +608,20 @@ int32 SKantanCartesianChart::DrawChartArea(
 				ChartConstants::AxisMarkerLength,
 				ChartConstants::AxisMarkerLabelGap
 				);
+
+			if (XAxisCfg.RightTopAxis.bMarkersFill)
+			{
+				DrawMarkersFill(
+					Geometry,
+					PlotSpaceGeometry,
+					OutDrawElements,
+					RetLayerId,
+					EAxis::X,
+					AxisUtil::FAxisTransform::FromTransform2D(CartesianToPlotTransform(PlotSpaceGeometry), 0 /* X axis */),
+					EChartAxisPosition::RightTop,
+					GetCachedMarkerData(EAxis::X, PlotSpaceGeometry)
+				);
+			}
 		}
 		break;
 	case EChartContentArea::YAxisLeft:
@@ -613,6 +641,20 @@ int32 SKantanCartesianChart::DrawChartArea(
 				ChartConstants::AxisMarkerLength,
 				ChartConstants::AxisMarkerLabelGap
 				);
+
+			if (YAxisCfg.LeftBottomAxis.bMarkersFill)
+			{
+				DrawMarkersFill(
+					Geometry,
+					PlotSpaceGeometry,
+					OutDrawElements,
+					RetLayerId,
+					EAxis::Y,
+					AxisUtil::FAxisTransform::FromTransform2D(CartesianToPlotTransform(PlotSpaceGeometry), 1 /* Y axis */),
+					EChartAxisPosition::LeftBottom,
+					GetCachedMarkerData(EAxis::Y, PlotSpaceGeometry)
+				);
+			}
 		}
 		break;
 	case EChartContentArea::YAxisRight:
@@ -632,6 +674,20 @@ int32 SKantanCartesianChart::DrawChartArea(
 				ChartConstants::AxisMarkerLength,
 				ChartConstants::AxisMarkerLabelGap
 				);
+
+			if (YAxisCfg.RightTopAxis.bMarkersFill)
+			{
+				DrawMarkersFill(
+					Geometry,
+					PlotSpaceGeometry,
+					OutDrawElements,
+					RetLayerId,
+					EAxis::Y,
+					AxisUtil::FAxisTransform::FromTransform2D(CartesianToPlotTransform(PlotSpaceGeometry), 1 /* Y axis */),
+					EChartAxisPosition::RightTop,
+					GetCachedMarkerData(EAxis::Y, PlotSpaceGeometry)
+				);
+			}
 		}
 		break;
 

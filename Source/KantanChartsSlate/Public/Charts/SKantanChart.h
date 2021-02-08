@@ -146,6 +146,7 @@ protected:
 	int32 DrawXAxisTitle(const FGeometry& Geometry, const FSlateRect& ClipRect, FSlateWindowElementList& OutDrawElements, int32 LayerId, FCartesianAxisConfig const& AxisCfg, AxisUtil::FAxisMarkerData const& MarkerData) const;
 	int32 DrawYAxisTitle(const FGeometry& Geometry, const FSlateRect& ClipRect, FSlateWindowElementList& OutDrawElements, int32 LayerId, FCartesianAxisConfig const& AxisCfg, AxisUtil::FAxisMarkerData const& MarkerData) const;
 	int32 DrawFixedAxis(const FGeometry& Geometry, const FSlateRect& ClipRect, FSlateWindowElementList& OutDrawElements, int32 LayerId, EAxis::Type Axis, AxisUtil::FAxisTransform const& ValueToChartAxisTransform, EChartAxisPosition AxisPosition, AxisUtil::FAxisMarkerData const& MarkerData, bool bDrawMarkers, bool bDrawLabels, float AxisMarkerLength, float AxisMarkerLabelGap) const;
+	int32 DrawMarkersFill(const FGeometry& Geometry, const FGeometry& PlotSpaceGeometry, FSlateWindowElementList& OutDrawElements, int32 LayerId, EAxis::Type Axis, AxisUtil::FAxisTransform const& ValueToChartAxisTransform, EChartAxisPosition AxisPosition, AxisUtil::FAxisMarkerData const& MarkerData) const;
 
 private:
 	/** Controls the speed at which the widget is ticked when in slate sleep mode */
